@@ -1,14 +1,12 @@
 import time
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
 
-# Replace this with your actual Streamlit app URL
-APP_URL = "https://livelogic.streamlit.app/"
+# Replace this with your actual LiveLogic Streamlit app URL
+APP_URL = "https://your-app-name.streamlit.app/"
 
 def wake_app():
     # Configure Chrome to run headlessly (required for GitHub Actions)
@@ -18,9 +16,9 @@ def wake_app():
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--window-size=1920,1080")
 
-    # Initialize the WebDriver
+    # Initialize the WebDriver (Selenium 4+ handles the driver automatically!)
     print("Initializing Chrome WebDriver...")
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    driver = webdriver.Chrome(options=options)
 
     try:
         print(f"Visiting {APP_URL}...")
