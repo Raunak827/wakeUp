@@ -5,8 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-# Replace this with your actual LiveLogic Streamlit app URL
-APP_URL = "https://your-app-name.streamlit.app/"
+APP_URL = "https://livelogic.streamlit.app/"
 
 def wake_app():
     # Configure Chrome to run headlessly (required for GitHub Actions)
@@ -28,7 +27,8 @@ def wake_app():
         wait = WebDriverWait(driver, 15)
         
         # XPath targeting the specific text on the Streamlit sleeping page
-        button_xpath = "//button[contains(text(), 'Yes, get this app back up!')]"
+# The '*' tells Selenium to look at ALL HTML tags, not just buttons
+        button_xpath = "//*[contains(text(), 'Yes, get this app back up')]" 
 
         try:
             # Check if the button is present and clickable
@@ -37,7 +37,7 @@ def wake_app():
             print("App was sleeping. 'Wake up' button clicked successfully!")
             
             # Brief pause to ensure the click registers before closing the browser
-            time.sleep(5) 
+            time.sleep(15) 
             
         except Exception:
             # If the button doesn't appear within 15 seconds, it throws an exception
